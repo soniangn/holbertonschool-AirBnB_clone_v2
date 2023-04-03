@@ -14,9 +14,9 @@ def cities_by_states():
     """ display a HTML page with list of cities 
     sorted by states
     """
-    cities = storage.all(City)
-    cities_list = sorted(cities.values(), key=lambda x: x.name)
-    return render_template("8-cities_by_states.html", cities=cities_list)
+    states = storage.all(State)
+    states_list = sorted(states.values(), key=lambda x: x.name)
+    return render_template("8-cities_by_states.html", states=states_list)
 
 
 @app.teardown_appcontext
