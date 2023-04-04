@@ -17,15 +17,16 @@ def states():
 
 
 @app.route("/states/<id>", strict_slashes=False)
-def states_id():
+def states_id(id):
     """ if found, display the list of city linked
         to the state sorted by name, else H1 not found
     """
-    states_id_list = []
+    state_id = None
     states = storage.all(State)
-    for _, v in states.items():
-        states_id_list.append(v)
-    return render_template("9-states.html", states_id_list=states_id_list) 
+    for state in states.values():
+        if state.id == id:
+            state_id = state
+    return render_template("9-states.html", state_id=state_id)
 
 
 @app.teardown_appcontext

@@ -11,14 +11,13 @@
             <LI>{{ state.id }}: <B>{{ state.name }} </B></LI>
             {% endfor %}
         </UL>
-        {% elif states_id_list %}
+        {% elif state_id %}
         <H1>State:</H1>
         <H3>Cities:</H3>
         <UL>
-            {% for state in states_id_list | sort(attribute='name') %}
-            <LI>{{ state.id }}: <B>{{ state.name }} </B>
+            <LI>{{ state_id.id }}: <B>{{ state_id.name }} </B>
                 <UL>
-                    {% for city in states_id_list.cities | sort(attribute='name') %}
+                    {% for city in state_id.cities | sort(attribute='name') %}
                     <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
                     {% endfor %}
                 </UL>
