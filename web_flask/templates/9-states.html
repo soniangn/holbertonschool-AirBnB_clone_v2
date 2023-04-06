@@ -7,22 +7,17 @@
         {% if states %}
         <H1>States</H1>
         <UL>
-            {% for state in states %}
-            <LI>{{ state.id }}: <B>{{ state.name }} </B></LI>
+            {% for state in states | sort(attribute='name') %}
+            <LI>{{ state.id }}: <B>{{ state.name }}</B></LI>
             {% endfor %}
         </UL>
-        {% elif state_id %}
-        <H1>State:</H1>
+        {% elif id_exist %}
+        <H1>State: {{ state_id.name }} </H1>
         <H3>Cities:</H3>
         <UL>
-            <LI>{{ state_id.id }}: <B>{{ state_id.name }} </B>
-                <UL>
-                    {% for city in state_id.cities | sort(attribute='name') %}
-                    <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
-                    {% endfor %}
-                </UL>
-            </LI>
-             {% endfor %}
+            {% for city in cities | sort(attribute='name') %}{% if city.state_id == state_id.id%}
+            <LI>{{ city.id }}: <B>{{ city.name }}</B></LI>
+            {% endfor %}
         </UL>
         {% else %}
         <H1>Not found!</H1>
